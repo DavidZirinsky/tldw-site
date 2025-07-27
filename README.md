@@ -4,21 +4,21 @@
 
 **TL;DW** is a web application that saves you time by providing AI-powered summaries of YouTube videos. Paste a YouTube link and get the key takeaways instantly, without watching the whole video.
 
-## Features
+## ✨ Features
 
 - **AI-Powered Summaries:** Get concise and accurate summaries of any YouTube video.
 - **Streaming Responses:** See the summary generated in real-time.
 - **Sleek Interface:** A modern and user-friendly interface for a smooth experience.
 - **Time-Saving:** Avoids long intros, ads, and filler content to get straight to the point.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Frontend:** [Next.js](https://nextjs.org/), [React](https://react.dev/), [Tailwind CSS](https://tailwindcss.com/)
 - **Backend:** [FastAPI](https://fastapi.tiangolo.com/), [Python](https://www.python.org/)
 - **AI:** [OpenAI](https://openai.com/)
 - **Deployment:** [Fly.io](https://fly.io/)
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -31,7 +31,7 @@
 1.  **Clone the repository:**
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/DavidZirinsky/tldw-site.git
     cd tldw-site
     ```
 
@@ -59,7 +59,7 @@
       pnpm run dev
       ```
 
-## Linting
+## 🔍 Linting
 
 To run the linter and check for code quality, run the following command in the `frontend` directory:
 
@@ -67,7 +67,17 @@ To run the linter and check for code quality, run the following command in the `
 pnpm run lint
 ```
 
-## Deployment
+## 🔧 Troubleshooting
+
+### Common Issues
+
+- **"Module not found" errors**: Make sure you've run `pnpm install` in the frontend directory
+- **Backend connection failed**: Ensure Docker is running and the backend container is up with `docker compose up -d`
+- **OpenAI API errors**: Check that your `OPENAI_API_KEY` is correctly set in the `.env` file
+- **Port already in use**: The frontend runs on port 3000 and backend on 8000. Kill any processes using these ports or change them in the configuration
+- **Docker permission denied**: On Linux, you may need to run Docker commands with `sudo` or add your user to the docker group
+
+## 🚀 Deployment
 
 This project is configured for deployment on [Fly.io](https://fly.io/).
 
@@ -88,3 +98,23 @@ This project is configured for deployment on [Fly.io](https://fly.io/).
     ```bash
     fly deploy
     ```
+
+## 🤝 Contributing
+
+We welcome contributions to TL;DW! Here's how you can help:
+
+1. **Fork the repository** and create your feature branch from `main`
+2. **Make your changes** following the existing code style and conventions
+3. **Test your changes** by running the linter: `pnpm run lint` in the frontend directory
+4. **Commit your changes** with a clear and descriptive commit message
+5. **Push to your fork** and submit a pull request
+
+### Development Guidelines
+
+- Follow the existing code style and formatting
+- Add comments for complex logic
+- Test your changes thoroughly before submitting
+- Keep commits focused and atomic
+- Write clear commit messages
+
+For bug reports or feature requests, please open an issue on GitHub.

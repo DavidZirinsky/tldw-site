@@ -1,0 +1,9 @@
+# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+#
+# To allow all crawlers to crawl your entire site, use the following:
+User-agent: *
+Allow: /
+
+# To tell crawlers where your sitemap is, use the following:
+# Make sure to replace https://your-domain.com with your actual domain.
+Sitemap: https://your-domain.com/sitemap.xml

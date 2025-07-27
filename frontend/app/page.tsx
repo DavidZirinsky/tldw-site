@@ -293,10 +293,12 @@ export default function HomePage() {
                 <div className="max-w-2xl mx-auto mb-8">
                   <Card className="bg-gray-900/50 border-gray-700 backdrop-blur-sm">
                     <CardContent className="p-4">
-                      <img
+                      <Image
                         src={thumbnailUrl || "/placeholder.svg"}
                         alt="YouTube video thumbnail"
                         className="w-full rounded-lg"
+                        width={1280}
+                        height={720}
                         onError={(e) => {
                           // Fallback to default thumbnail if maxresdefault fails
                           e.currentTarget.src = thumbnailUrl.replace(
@@ -321,7 +323,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-4">Contact Us</h2>
           <p className="text-xl text-gray-400 mb-8">
-            We'd love to hear your feedback.
+            We&apos;d love to hear your feedback.
           </p>
           <Button asChild size="lg" className="bg-red-600 hover:bg-red-700">
             <a href="mailto:dzirinsky+feedback@gmail.com">

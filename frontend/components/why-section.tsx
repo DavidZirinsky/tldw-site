@@ -38,7 +38,7 @@ const WhySection = () => {
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Oftentimes creators talk... really... slowly... and edge around a topic so a 3-minute point becomes a
-            40-minute video, giving them lots of ad revenue. But we don't all have time to sit through a 40-minute video
+            40-minute video, giving them lots of ad revenue. But we don&apos;t all have time to sit through a 40-minute video
             uninterrupted.
           </p>
         </div>

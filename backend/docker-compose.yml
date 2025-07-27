@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   api:
+    container_name: tldw
     build:
       context: .
       dockerfile: Dockerfile

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.youtubetldw.com/"),
   title: "tl;dw - No Login, No BS YouTube Summaries",
   description:
-    "AI-powered YouTube video summaries. No login, no BS. Get to the point instantly.",
+    "AI-powered YouTube video summaries. No login, no ads, no BS. Get to the point instantly.",
   keywords: [
     "youtube summary",
     "ai summarizer",

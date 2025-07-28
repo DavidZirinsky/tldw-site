@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-tldw-domain.com"),
+  metadataBase: new URL("https://www.youtubetldw.com/"),
   title: "tl;dw - No Login, No BS YouTube Summaries",
   description:
     "AI-powered YouTube video summaries. No login, no BS. Get to the point instantly.",
@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   creator: "David Zirinsky",
   publisher: "David Zirinsky",
   alternates: {
-    canonical: "https://your-tldw-domain.com",
+    canonical: "https://www.youtubetldw.com/",
   },
   category: "Productivity",
   openGraph: {
     title: "tl;dw - Instant, No-BS YouTube Summaries",
     description:
       "Stop wasting time. Get AI-powered summaries of YouTube videos without needing to log in. Fast, free, and to the point.",
-    url: "https://your-tldw-domain.com",
+    url: "https://www.youtubetldw.com/",
     siteName: "tl;dw",
     images: [
       {
@@ -72,10 +72,10 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "tl;dw",
-    url: "https://your-tldw-domain.com",
+    url: "https://www.youtubetldw.com/",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://your-tldw-domain.com/?url={search_term_string}",
+      target: "https://www.youtubetldw.com//?url={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
@@ -129,7 +129,7 @@ export default function RootLayout({
         />
         <Script
           strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtag/js?id=G-FFXL6ENC3G"
         />
         <Script
           id="gtag-init"
@@ -139,7 +139,7 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX');
+              gtag('config', 'G-FFXL6ENC3G');
             `,
           }}
         />

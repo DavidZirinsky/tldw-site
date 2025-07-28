@@ -5,5 +5,5 @@ User-agent: *
 Allow: /
 
 # To tell crawlers where your sitemap is, use the following:
-# Make sure to replace https://your-domain.com with your actual domain.
-Sitemap: https://your-domain.com/sitemap.xml
+# Make sure to replace https://www.youtubetldw.com/ with your actual domain.
+Sitemap: https://www.youtubetldw.com//sitemap.xml

@@ -2,7 +2,7 @@
 
 ![TL;DW Logo](frontend/public/logo-tech.png)
 
-**TL;DW** is a web application that saves you time by providing AI-powered summaries of YouTube videos. Paste a YouTube link and get the key takeaways instantly, without watching the whole video.
+**TL;DW** is a web application that saves you time by providing AI-powered summaries of YouTube videos. Paste a YouTube link and get the key takeaways instantly, without watching the whole video. See it in action [here](https://www.youtubetldw.com/)
 
 ## ✨ Features
 

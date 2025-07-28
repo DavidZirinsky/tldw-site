@@ -4,6 +4,8 @@
 
 **TL;DW** is a web application that saves you time by providing AI-powered summaries of YouTube videos. Paste a YouTube link and get the key takeaways instantly, without watching the whole video. See it in action [here](https://www.youtubetldw.com/)
 
+This utilizes the python [tldw](https://github.com/DavidZirinsky/tl-dw/) library on the backend to get the YouTube summaries.
+
 ## ✨ Features
 
 - **AI-Powered Summaries:** Get concise and accurate summaries of any YouTube video.
@@ -16,7 +18,9 @@
 - **Frontend:** [Next.js](https://nextjs.org/), [React](https://react.dev/), [Tailwind CSS](https://tailwindcss.com/)
 - **Backend:** [FastAPI](https://fastapi.tiangolo.com/), [Python](https://www.python.org/)
 - **AI:** [OpenAI](https://openai.com/)
-- **Deployment:** [Fly.io](https://fly.io/)
+- **Deployment:** [Fly.io](https://fly.io/). 
+
+Note on Fly: This was originally deployed in an AWS lambda, then GCS cloud run, then finally to Fly as I hoped that I could find a cloud provider who's IP range wasn't blocked by Youtube. I ended up going with a redisential proxy provider, but I kept the deployment in Fly given the generous egress traffic limit of ~160gb/month versus GCP's 1gb/month limit.
 
 ## 🚀 Getting Started
 

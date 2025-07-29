@@ -1,5 +1,4 @@
 fastapi==0.116.1
 uvicorn==0.35.0
-tldw==1.0.2
+tldw==1.0.3
 pytest
-httpx==0.28.1

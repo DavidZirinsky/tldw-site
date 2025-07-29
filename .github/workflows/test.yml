@@ -30,4 +30,4 @@ jobs:
 
       - name: Run Tests in Docker Container
         working-directory: ./backend
-        run: docker compose up --build && docker exec tldw pytest --abort-on-container-exit tldw
+        run: docker compose up -d && docker exec tldw pytest --abort-on-container-exit tldw

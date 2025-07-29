@@ -25,6 +25,7 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
 
       - name: create .env file
+        working-directory: ./backend
         run: cp .env.example .env
 
       - name: Run Tests in Docker Container

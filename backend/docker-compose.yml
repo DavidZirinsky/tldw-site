@@ -5,7 +5,8 @@ services:
     container_name: tldw
     build:
       context: .
-      dockerfile: Dockerfile
+      args:
+        REQUIREMENTS_FILE: dev-requirements.txt
     env_file: .env
     ports:
       - "8080:8080"

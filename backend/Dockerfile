@@ -10,12 +10,12 @@ RUN apt-get update && \
 # Set working directory
 WORKDIR /app
 
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+ARG REQUIREMENTS_FILE=requirements.txt
 
 # Copy application code
 COPY . .
+
+RUN pip install -r ${REQUIREMENTS_FILE}
 
 RUN rm -rf /root/.cache
 
@@ -29,10 +29,12 @@ RUN groupadd -g 1000 appuser && \
 # Change ownership of the application files to the non-root user
 RUN chown -R appuser:appuser /app
 
+ENV PYTHONPATH=/app
+
 # Switch to the non-root user
 USER appuser
 
 ENV PORT=${PORT:-8080}
 
 # Use the PORT environment variable set by Heroku
-CMD uvicorn src.app:app --host 0.0.0.0 --port $PORT
+CMD uvicorn src.app:app --host  0.0.0.0 --port $PORT

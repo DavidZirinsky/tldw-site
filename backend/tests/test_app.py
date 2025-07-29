@@ -1,7 +1,7 @@
 import json
 from unittest.mock import patch
 
-from app import stream_process
+from src.app import stream_process
 
 
 def test_status_endpoint(client):
@@ -39,7 +39,24 @@ def test_stream_process_valid_youtube_url(mock_stream_summary):
     chunks = list(generator)
 
     assert b"Starting process..." in chunks[0]
-    assert b"Extracting video ID: test123" in chunks[1]
+    assert b"Processing URL: https://www.youtube.com/watch?v=test123" in chunks[1]
+    assert b"Summary chunk 1" in chunks
+    assert b"Summary chunk 2" in chunks
+    assert b"--- End of summary ---" in chunks[-1]
+
+
+@patch("src.app.summarizer.stream_summary")
+def test_stream_process_valid_mobile_youtube_url(mock_stream_summary):
+    mock_stream_summary.return_value = iter([b"Summary chunk 1", b"Summary chunk 2"])
+
+    youtube_url = (
+        "https://m.youtube.com/watch?si=Jss4-zsna5StOA0O&v=vyRnVq2-UWU&feature=youtu.be"
+    )
+    generator = stream_process(youtube_url)
+    chunks = list(generator)
+
+    assert b"Starting process..." in chunks[0]
+    assert b"Processing URL: https://www.youtube.com/watch?v=vyRnVq2-UWU" in chunks[1]
     assert b"Summary chunk 1" in chunks
     assert b"Summary chunk 2" in chunks
     assert b"--- End of summary ---" in chunks[-1]
@@ -70,7 +87,7 @@ def test_stream_process_youtu_be_url(mock_stream_summary):
     generator = stream_process(youtube_url)
     chunks = list(generator)
 
-    assert b"Extracting video ID: test456" in chunks[1]
+    assert b"Processing URL: https://youtu.be/test456" in chunks[1]
     mock_stream_summary.assert_called_once_with(youtube_url=youtube_url)
 
 

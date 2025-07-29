@@ -1,7 +1,6 @@
 import json
 import logging
 import os
-import re
 
 import uvicorn
 from fastapi import FastAPI, HTTPException, Query
@@ -25,7 +24,6 @@ proxy_config = {
     "https": f"http://{os.environ.get('PROXY_URL')}",
 }
 summarizer = tldw(openai_api_key=os.environ.get("OPENAI_API_KEY"))
-#   proxies=proxy_config)
 
 
 def stream_process(youtube_url: str):
@@ -33,16 +31,23 @@ def stream_process(youtube_url: str):
     try:
         yield b"Starting process...\n"
 
-        # Extract video ID from URL
-        video_id_match = re.search(
-            r"(?:youtube\.com/watch\?.*?v=|youtu\.be/)([^&\n?#]+)", youtube_url
-        )
-        if not video_id_match:
+        # Very light validation - just check if it looks like a YouTube URL
+        if not ("youtube.com" in youtube_url or "youtu.be" in youtube_url):
             yield json.dumps({"error": "Invalid YouTube URL"}).encode("utf-8")
             return
 
-        video_id = video_id_match.group(1)
-        yield f"Extracting video ID: {video_id}\n".encode("utf-8")
+        # Try to clean the URL - remove mobile prefix and extra parameters that might confuse tldw
+        cleaned_url = youtube_url.replace("m.youtube.com", "www.youtube.com")
+        if "youtube.com/watch" in cleaned_url and "v=" in cleaned_url:
+            # Extract just the essential parts
+            from urllib.parse import parse_qs, urlparse
+
+            parsed = urlparse(cleaned_url)
+            video_id = parse_qs(parsed.query).get("v", [None])[0]
+            if video_id:
+                cleaned_url = f"https://www.youtube.com/watch?v={video_id}"
+
+        yield f"Processing URL: {cleaned_url}\n".encode("utf-8")
 
         summary_chunks = summarizer.stream_summary(youtube_url=youtube_url)
 
@@ -51,7 +56,9 @@ def stream_process(youtube_url: str):
 
     except Exception as e:
         logging.error(f"Unexpected error: {e}")
-        yield json.dumps({"error": f"Unexpected error: {str(e)}"}).encode("utf-8")
+        yield json.dumps({"error": f"There was an issue fetching that: {e}"}).encode(
+            "utf-8"
+        )
 
     yield b"\n--- End of summary ---\n"
 

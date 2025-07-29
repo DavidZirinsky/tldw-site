@@ -19,10 +19,6 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-proxy_config = {
-    "http": f"http://{os.environ.get('PROXY_URL')}",
-    "https": f"http://{os.environ.get('PROXY_URL')}",
-}
 summarizer = tldw(openai_api_key=os.environ.get("OPENAI_API_KEY"))
 
 
@@ -84,7 +80,6 @@ def summarize(url: str = Query(..., description="YouTube video URL to summarize"
     )
 
 
-# for local dev
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     uvicorn.run(app, host="0.0.0.0", port=port)

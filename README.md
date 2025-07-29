@@ -27,7 +27,6 @@ Note on Fly: This was originally deployed in an AWS lambda, then GCS cloud run, 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en) and [pnpm](https://pnpm.io/)
-- [Python](https://www.python.org/) and `pip`
 - [Docker](https://www.docker.com/) (for local backend setup)
 
 ### Installation

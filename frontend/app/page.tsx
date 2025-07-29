@@ -20,18 +20,20 @@ export default function HomePage() {
   const [isValidUrl, setIsValidUrl] = useState(true);
   const [thumbnailUrl, setThumbnailUrl] = useState("");
 
+  const getYouTubeVideoId = (url: string) => {
+    const regex =
+      /(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?.*?v=|embed\/|v\/|)([\w-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
+
   const validateYouTubeUrl = (url: string) => {
-    const youtubeRegex =
-      /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)[a-zA-Z0-9_-]{11}(&.*)?$/;
-    return youtubeRegex.test(url);
+    return getYouTubeVideoId(url) !== null;
   };
 
   const getYouTubeThumbnail = (url: string) => {
-    const videoIdMatch = url.match(
-      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)([a-zA-Z0-9_-]{11})/
-    );
-    if (videoIdMatch) {
-      const videoId = videoIdMatch[1];
+    const videoId = getYouTubeVideoId(url);
+    if (videoId) {
       return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
     }
     return "";

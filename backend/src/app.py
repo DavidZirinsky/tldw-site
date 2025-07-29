@@ -1,11 +1,12 @@
-import os
 import json
-import requests
-from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import StreamingResponse
-from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
+import logging
+import os
 import re
+
+import uvicorn
+from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from tldw import tldw
 
 app = FastAPI()
@@ -19,21 +20,27 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-proxy_config = {'http': f"http://{os.environ.get('PROXY_URL')}", 'https': f"http://{os.environ.get('PROXY_URL')}"}
-summarizer = tldw(openai_api_key=os.environ.get('OPENAI_API_KEY'))
-                #   proxies=proxy_config)
+proxy_config = {
+    "http": f"http://{os.environ.get('PROXY_URL')}",
+    "https": f"http://{os.environ.get('PROXY_URL')}",
+}
+summarizer = tldw(openai_api_key=os.environ.get("OPENAI_API_KEY"))
+#   proxies=proxy_config)
+
 
 def stream_process(youtube_url: str):
     """Generator function that performs the work and yields the stream."""
     try:
         yield b"Starting process...\n"
-        
+
         # Extract video ID from URL
-        video_id_match = re.search(r'(?:youtube\.com/watch\?v=|youtu\.be/)([^&\n?#]+)', youtube_url)
+        video_id_match = re.search(
+            r"(?:youtube\.com/watch\?.*?v=|youtu\.be/)([^&\n?#]+)", youtube_url
+        )
         if not video_id_match:
             yield json.dumps({"error": "Invalid YouTube URL"}).encode("utf-8")
             return
-        
+
         video_id = video_id_match.group(1)
         yield f"Extracting video ID: {video_id}\n".encode("utf-8")
 
@@ -43,10 +50,11 @@ def stream_process(youtube_url: str):
             yield chunk
 
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        logging.error(f"Unexpected error: {e}")
         yield json.dumps({"error": f"Unexpected error: {str(e)}"}).encode("utf-8")
 
     yield b"\n--- End of summary ---\n"
+
 
 @app.get("/")
 def status():
@@ -67,6 +75,7 @@ def summarize(url: str = Query(..., description="YouTube video URL to summarize"
         stream_process(url),
         media_type="text/plain; charset=utf-8",
     )
+
 
 # for local dev
 if __name__ == "__main__":

@@ -2,3 +2,4 @@ fastapi
 uvicorn[standard]
 requests
 tldw==1.0.2
+pytest

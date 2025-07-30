@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import WhySection from "@/components/why-section";
+import ShareSection from "@/components/share-section";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
@@ -342,6 +343,8 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
+
+      <ShareSection />
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-gray-800 py-12">

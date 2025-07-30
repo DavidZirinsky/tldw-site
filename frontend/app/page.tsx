@@ -8,9 +8,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Zap, CheckCircle, AlertCircle, ChevronDown, Mail } from "lucide-react";
+import {
+  Zap,
+  CheckCircle,
+  AlertCircle,
+  ChevronDown,
+  Mail,
+  Github,
+} from "lucide-react";
 import Image from "next/image";
 import WhySection from "@/components/why-section";
+import ShareSection from "@/components/share-section";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
@@ -336,6 +344,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ShareSection />
+
       {/* Footer */}
       <footer className="relative z-10 border-t border-gray-800 py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -350,9 +360,19 @@ export default function HomePage() {
               />
               <span className="text-xl font-bold text-white">TL;DW</span>
             </div>
-            <p className="text-gray-500 text-center md:text-right">
-              © 2025 David Zirinsky. Making YouTube consumption efficient.
-            </p>
+            <div className="flex items-center space-x-4">
+              <p className="text-gray-500 text-center md:text-right">
+                © 2025 David Zirinsky. Making YouTube consumption efficient.
+              </p>
+              <a
+                href="https://github.com/DavidZirinsky/tldw-site"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white"
+              >
+                <Github className="w-6 h-6" />
+              </a>
+            </div>
           </div>
         </div>
       </footer>

@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.youtubetldw.com/",
   },
+  manifest: "/site.webmanifest",
   category: "Productivity",
   openGraph: {
     title: "tl;dw - Instant, No-BS YouTube Summaries",
@@ -114,11 +115,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#FF0000" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="preconnect" href="https://img.youtube.com" />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

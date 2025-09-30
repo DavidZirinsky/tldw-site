@@ -15,10 +15,12 @@ import {
   ChevronDown,
   Mail,
   Github,
+  Link as LinkIcon,
 } from "lucide-react";
 import Image from "next/image";
 import WhySection from "@/components/why-section";
 import ShareSection from "@/components/share-section";
+import { toast } from "sonner";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
@@ -114,6 +116,12 @@ export default function HomePage() {
     }
   };
 
+  const copySummary = () => {
+    if (summary) {
+      navigator.clipboard.writeText(summary);
+      toast.success("Summary copied to clipboard!");
+    }
+  };
   return (
     <div className="bg-black text-white relative overflow-hidden">
       {/* Hero and Header Container */}
@@ -283,12 +291,16 @@ export default function HomePage() {
               {summary && (
                 <Card className="max-w-4xl mx-auto text-left bg-gray-900/50 border-gray-700 backdrop-blur-sm">
                   <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                      <h3 className="text-lg font-semibold text-white">
-                        Summary
-                      </h3>
-                    </div>
+                    <div className="flex items-center justify-between mb-4 w-full">
+  <div className="flex items-center">
+    <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+    <h3 className="text-lg font-semibold text-white">Summary</h3>
+  </div>
+  <Button size="sm" className="bg-red-600 hover:bg-red-700" onClick={copySummary}>
+    <LinkIcon className="w-4 h-4 mr-2" />
+    Copy
+  </Button>
+</div>
                     <div className="prose max-w-none">
                       <p className="text-gray-300 leading-relaxed whitespace-pre-wrap">
                         {summary}
